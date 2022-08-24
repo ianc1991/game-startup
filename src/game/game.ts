@@ -14,6 +14,7 @@ export class Game extends Entity {
 
     window.requestAnimationFrame(() => {
       this._lastTimestamp = Date.now()
+      // begin loop
       this.Update()
     })
   }
