@@ -1,10 +1,10 @@
-// Interface
+// Interfaces
 import { IComponent } from './component.h'
-import { IUpdate } from '../update.h'
+import { IUpdate, IAwake } from '../../utils'
 
 type constr<T> = { new(...args: unknown[]): T}
 
-export abstract class Entity implements IUpdate {
+export abstract class Entity implements IUpdate, IAwake {
   // to keep track of attached components
   protected _components: IComponent[] = []
 
@@ -56,6 +56,12 @@ export abstract class Entity implements IUpdate {
     }
 
     return false
+  }
+
+  public Awake(): void {
+    for (const component of this._components) {
+      component.Awake()
+    }
   }
 
   public Update(deltaTime: number): void {
