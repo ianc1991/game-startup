@@ -14,7 +14,7 @@ export abstract class Entity implements IUpdate, IAwake {
 
   public AddComponent(component: IComponent) {
     this._components.push(component)
-    // sets reference to the entity ??
+    // sets component param reference to the entity
     component.Entity = this
   }
 
