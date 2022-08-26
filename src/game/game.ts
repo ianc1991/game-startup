@@ -1,12 +1,19 @@
 import { Entity } from "../utils";
 import { Settings } from "../settings";
+import { Grid } from "../grid";
 
 export class Game extends Entity {
-  public Entities: Entity[] =[]
+  private _entities: Entity[] = []
   private _lastTimestamp = 0
+
+  public get Entities(): Entity[] {
+    return this._entities
+  }
 
   public Awake(): void {
     super.Awake()
+
+    this._entities.push(new Grid())
 
     // awake children
     for (const entity of this.Entities) {
