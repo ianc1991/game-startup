@@ -1,5 +1,4 @@
-import { Canvas } from "./canvas";
-import { Vector2D } from "../vector2D";
+import { Canvas, Vector2D, Color } from '../../utils'
 
 describe('>>> Canvas', () => {
   const size = new Vector2D(100, 100)
@@ -22,7 +21,7 @@ describe('>>> Canvas', () => {
     expect(appendChildSpy).toBeCalled()
   })
 
-  describe('>>> Canvas', () => {
+  describe('>>> API', () => {
     beforeEach(() => {
       canvas.Awake()
     })
@@ -30,18 +29,17 @@ describe('>>> Canvas', () => {
     it('should draw and fill the rect', () => {
       const start = new Vector2D(0, 0)
       const size = new Vector2D(10, 10)
-      const color = '#ffff00'
 
       const beginPathSpy = jest.spyOn(canvas.Context, 'beginPath')
       const rectSpy = jest.spyOn(canvas.Context, 'rect')
       const fillSpy = jest.spyOn(canvas.Context, 'fill')
 
-      canvas.FillRect(start, size, color)
+      canvas.FillRect(start, size, new Color(255, 255, 255, 1))
 
       expect(beginPathSpy).toBeCalled()
       expect(rectSpy).toBeCalledWith(start.x, start.y, size.x, size.y)
       expect(fillSpy).toBeCalled()
-      expect(canvas.Context.fillStyle).toBe(color)
+      expect(canvas.Context.fillStyle).toBe<string>('#ffffff')
     })
 
     it('should clear the rect', () => {

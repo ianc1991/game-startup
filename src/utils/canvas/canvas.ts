@@ -1,4 +1,4 @@
-import { Vector2D, IAwake } from "../../utils"
+import { Vector2D, IAwake, Color } from '../../utils'
 
 export class Canvas implements IAwake {
   constructor(public readonly Size: Vector2D) { }
@@ -30,9 +30,9 @@ export class Canvas implements IAwake {
     this._ctx = ctx
   }
 
-  public FillRect(start: Vector2D, size: Vector2D, color: string): void {
+  public FillRect(start: Vector2D, size: Vector2D, color: Color): void {
     this._ctx.beginPath()
-    this._ctx.fillStyle = color
+    this._ctx.fillStyle = color.AsString()
     this._ctx.rect(start.x, start.y, size.x, size.y)
     this._ctx.fill()
   }
