@@ -47,4 +47,13 @@ export class Canvas implements IAwake {
     this._ctx.fillStyle = color.AsString()
     this._ctx.fill()
   }
+
+  public SetStyle(style: Partial<CSSStyleDeclaration>): void {
+    for (const key in style) {
+      if (!Object.hasOwnProperty.call(style, key)) continue
+      if (!style[key]) continue
+
+      this._elm.style[key] = style[key] as string
+    }
+  }
 }
