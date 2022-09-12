@@ -7,6 +7,7 @@ import { CanvasLayer } from '../../../canvas-layer'
 export class NodeDrawComponent implements IComponent {
   public Entity!: Node
 
+
   Update(deltaTime: number): void {
     this.Clear()
     this.Draw()
