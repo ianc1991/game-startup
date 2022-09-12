@@ -48,6 +48,11 @@ export class Canvas implements IAwake {
     this._ctx.fill()
   }
 
+  public FillText(start: Vector2D, letter: string) {
+    //this._ctx.beginPath()
+    this._ctx.fillText(letter, start.x, start.y)
+  }
+
   public SetStyle(style: Partial<CSSStyleDeclaration>): void {
     for (const key in style) {
       if (!Object.hasOwnProperty.call(style, key)) continue

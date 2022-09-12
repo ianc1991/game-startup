@@ -1,5 +1,6 @@
 import { Entity } from "../utils";
 import { Grid } from "../grid";
+import { LetterBag } from "../letters";
 
 export class Game extends Entity {
   private _entities: Entity[] = []
@@ -12,7 +13,10 @@ export class Game extends Entity {
   public Awake(): void {
     super.Awake()
 
-    this._entities.push(new Grid())
+    this._entities.push(
+      new Grid(),
+      new LetterBag(),
+    )
 
     // awake children
     for (const entity of this.Entities) {
