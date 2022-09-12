@@ -52,5 +52,21 @@ describe('>>> Canvas', () => {
       canvas.ClearRect(start, size)
       expect(spy).toBeCalledWith(start.x, start.y, size.x, size.y)
     })
+
+    it('should draw and fill the circle', () => {
+      const center = new Vector2D(0, 0)
+      const radius = 1
+
+      const beginPathSpy = jest.spyOn(canvas.Context, 'beginPath')
+      const arcSpy = jest.spyOn(canvas.Context, 'arc')
+      const fillSpy = jest.spyOn(canvas.Context, 'fill')
+
+      canvas.FillCircle(center, radius, new Color(255, 255, 255, 1))
+
+      expect(beginPathSpy).toBeCalled()
+      expect(arcSpy).toBeCalledWith(center.x, center.y, radius, 0, Math.PI * 2)
+      expect(fillSpy).toBeCalled()
+      expect(canvas.Context.fillStyle).toBe('#ffffff')
+    })
   })
 })
